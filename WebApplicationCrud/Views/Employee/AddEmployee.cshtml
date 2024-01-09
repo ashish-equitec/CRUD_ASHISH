@@ -1,0 +1,82 @@
+﻿@model WebApplicationCrud.Models.Employee
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">CREATE NEW EMPLOYEE RECORD</h4>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("AddEmployee", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Email_Address, htmlAttributes: new { @class = "col-md-2 col-form-label text-right" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email_Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email_Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-info" onclick="confirmSave()">Create</button>
+                    </div>z
+                </div>
+            }
+        </div>
+        <div class="card-footer">
+            <div class="text-right">
+                @Html.ActionLink("Back to List", "GetAllEmployeeDetails", new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    function confirmSave() {
+        var isConfirmed = confirm("Are you sure you want to add record?");
+
+        if (isConfirmed) {
+            alert("Data inserted successfully!");
+        } else {
+            alert("Data insertion canceled.");
+        }
+    }
+</script>
+

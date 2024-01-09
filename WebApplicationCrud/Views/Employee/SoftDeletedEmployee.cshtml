@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplicationCrud.Models.Employee>
+
+
+<table class="table">
+    <tr>
+        <th> NAME</th>
+        <th>DOB</th>
+        <th> LOCATION</th>
+        <th> DESIGNATION </th>
+        <th> EMAIL_ADDRESS</th>
+        <th> ACTION</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td> @Html.DisplayFor(modelItem => item.Name)</td>
+        <td> @Html.DisplayFor(modelItem => item.DOB)</td>
+        <td> @Html.DisplayFor(modelItem => item.Location)</td>
+        <td>@Html.DisplayFor(modelItem => item.Designation)</td>
+        <td> @Html.DisplayFor(modelItem => item.Email_Address)</td>
+        <td> @Html.ActionLink("Restore", "RestoreEmployee", new { id = item.Id }, new { @class = "btn btn-outline-danger", onclick = "return confirmRestore();" }) </td>
+    </tr>
+}
+</table>
+<hr />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="text-center">
+    <p><button type="button" class="btn btn-outline-primary btn-sm btn-block" onclick="location.href='@Url.Action("GetAllEmployeeDetails")'">< < - Back to the list</button></p>
+</div>
+
+<script>
+    function confirmRestore() {
+        var result = confirm("Are you sure you want to restore this employee?");
+
+        return result;
+    }
+</script>
